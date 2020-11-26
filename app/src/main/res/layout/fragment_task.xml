@@ -7,12 +7,12 @@
     android:background="?attr/layoutColor">
 
     <EditText
-        android:id="@+id/taskTitle"
+        android:id="@+id/etTaskTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Title" />
+        android:text="@string/title" />
 
     <EditText
         android:id="@+id/etTaskDescription"
@@ -20,11 +20,11 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Task" />
+        android:text="@string/task" />
 
     <Button
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save" />
+        android:text="@string/save" />
 </LinearLayout>

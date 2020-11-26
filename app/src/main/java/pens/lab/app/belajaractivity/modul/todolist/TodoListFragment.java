@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import pens.lab.app.belajaractivity.R;
 import pens.lab.app.belajaractivity.base.BaseFragment;
 import pens.lab.app.belajaractivity.data.model.Task;
+import pens.lab.app.belajaractivity.data.source.session.TaskSessionRepository;
 import pens.lab.app.belajaractivity.modul.edittask.EditTaskActivity;
 import pens.lab.app.belajaractivity.modul.newtask.NewTaskActivity;
 import pens.lab.app.belajaractivity.utils.RecyclerViewAdapterTodolist;
@@ -43,11 +44,11 @@ public class TodoListFragment extends BaseFragment<TodoListActivity, TodoListCon
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        fragmentView = inflater.inflate(R.layout.fragment_todolist2, container, false);
-        mPresenter = new TodoListPresenter(this);
+        fragmentView = inflater.inflate(R.layout.fragment_todolist, container, false);
+        mPresenter = new TodoListPresenter(this, new TaskSessionRepository(getActivity()));
         mPresenter.start();
 
-        mRecyclerView = fragmentView.findViewById(R.id.rvTodolist);
+        mRecyclerView = fragmentView.findViewById(R.id.recyclerViewTodolist);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(activity);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -56,13 +57,13 @@ public class TodoListFragment extends BaseFragment<TodoListActivity, TodoListCon
         mRecyclerView.setAdapter(mAdapter);
         setTitle("Todo List");
 
-//        buttonAdd = fragmentView.findViewById(R.id.buttonAdd);
-//        buttonAdd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                gotoNewTask();
-//            }
-//        });
+        buttonAdd = fragmentView.findViewById(R.id.buttonAdd);
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoNewTask();
+            }
+        });
 
         ((RecyclerViewAdapterTodolist) mAdapter).setOnItemClickListener(new RecyclerViewAdapterTodolist.MyClickListener() {
             @Override
@@ -73,13 +74,13 @@ public class TodoListFragment extends BaseFragment<TodoListActivity, TodoListCon
             }
         });
 
-        btNewTask = fragmentView.findViewById(R.id.btNewTask);
-        btNewTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoNewTask();
-            }
-        });
+//        btNewTask = fragmentView.findViewById(R.id.btNewTask);
+//        btNewTask.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                gotoNewTask();
+//            }
+//        });
 
         return fragmentView;
     }

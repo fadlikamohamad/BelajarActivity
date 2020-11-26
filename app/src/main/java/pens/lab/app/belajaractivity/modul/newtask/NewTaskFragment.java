@@ -11,6 +11,7 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 import pens.lab.app.belajaractivity.R;
 import pens.lab.app.belajaractivity.base.BaseFragment;
+import pens.lab.app.belajaractivity.data.source.session.TaskSessionRepository;
 import pens.lab.app.belajaractivity.modul.todolist.TodoListActivity;
 
 
@@ -31,13 +32,13 @@ public class NewTaskFragment extends BaseFragment<NewTaskActivity, NewTaskContra
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        fragmentView = inflater.inflate(R.layout.fragment_task2, container, false);
-        mPresenter = new NewTaskPresenter(this);
+        fragmentView = inflater.inflate(R.layout.fragment_task, container, false);
+        mPresenter = new NewTaskPresenter(this, new TaskSessionRepository(getActivity()));
         mPresenter.start();
 
-        ptTaskTitle = fragmentView.findViewById(R.id.ptTaskTitle);
-        ptTaskDescription = fragmentView.findViewById(R.id.ptTaskDescription);
-        btSave = fragmentView.findViewById(R.id.btSave);
+        ptTaskTitle = fragmentView.findViewById(R.id.etTaskTitle);
+        ptTaskDescription = fragmentView.findViewById(R.id.etTaskDescription);
+        btSave = fragmentView.findViewById(R.id.btnSave);
         btSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
